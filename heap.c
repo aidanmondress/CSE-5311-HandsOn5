@@ -10,13 +10,13 @@
 
 struct HeapStruct
 {
-    int arr[];
+    int* arr;
     int size;
     int capacity;
 };
 typedef struct HeapStruct heap;
 
-heap* createHeap(int nums[], int n)
+heap* heapInit(int* nums, int n)
 {
     heap* hp = (heap*)malloc(sizeof(heap));
     int i = 0;
@@ -42,19 +42,19 @@ heap* createHeap(int nums[], int n)
 
 void heapify(heap* hp, int i)
 {
-    int left = i * 2 + 1;
-    int right = i * 2 + 2;
+    int l = i * 2 + 1;
+    int r = i * 2 + 2;
     int min = i;
 
-    if(left >= hp->size || left < 0)
-        left = -1;
-    if(right >= hp->size || right < 0)
-        right = -1;
+    if(l >= hp->size || l < 0)
+        l = -1;
+    if(r >= hp->size || r < 0)
+        r = -1;
 
-    if(hp->arr[left] < hp->arr[i] && left != -1)
-        min = left;
-    if(hp->arr[right] < hp->arr[min] && right != -1)
-        min = right;
+    if(hp->arr[l] < hp->arr[i] && l != -1)
+        min = l;
+    if(hp->arr[r] < hp->arr[min] && r != -1)
+        min = r;
 
     if(min != i)
     {
@@ -82,12 +82,19 @@ int popRoot(heap* hp)
 
 void printHeap(heap* hp)
 {
-    for(int i = 0; i < hp->size; i++)
+	for(int i = 0; i < hp->size; i++)
         printf("%d ", hp->arr[i]);
     printf("\n");
 }
 
 int main()
 {
+	int arr[11] = {15, 1, 7, 20, 13, 4, 11, 3, 10, 12, 24};
+	heap* h = heapInit(arr, 11);
 
+	printHeap(h);
+	popRoot(h);
+	printHeap(h);
+
+	return 0;
 }
