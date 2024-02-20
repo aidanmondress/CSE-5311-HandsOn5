@@ -92,8 +92,12 @@ int main()
 	int arr[11] = {15, 1, 7, 20, 13, 4, 11, 3, 10, 12, 24};
 	heap* h = heapInit(arr, 11);
 
+	printf("Initial Heap: ");
 	printHeap(h);
+
 	popRoot(h);
+
+	printf("Heap After Root is Popped: ");
 	printHeap(h);
 
 	return 0;
