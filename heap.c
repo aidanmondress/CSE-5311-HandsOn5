@@ -66,18 +66,25 @@ void heapify(heap* hp, int i)
     }
 }
 
-int extractMin(heap* hp)
+int popRoot(heap* hp)
 {
     if(hp->size == 0)
         return -1;
 
-    int extract = hp->arr[0];
+    int root = hp->arr[0];
 
     hp->arr[0] = hp->arr[hp->size - 1];
     hp->size--;
 
     heapify(hp, 0);
-    return extract;
+    return root;
+}
+
+void printHeap(heap* hp)
+{
+    for(int i = 0; i < hp->size; i++)
+        printf("%d ", hp->arr[i]);
+    printf("\n");
 }
 
 int main()
